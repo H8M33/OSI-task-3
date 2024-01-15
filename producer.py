@@ -1,4 +1,7 @@
+#!/usr/bin/python3
 import random
+import sys
+import os
 import time
 
 N = random.randint(120, 180)
