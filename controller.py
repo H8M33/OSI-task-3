@@ -1,10 +1,12 @@
 import os
 import signal
-import subprocess
+import sys
 
 def handler(signum, frame):
     if signum == signal.SIGUSR1:
+        global count
         print(f"Produced: {count}")
+        sys.stderr.write(output)
 
 pipe1 = os.pipe()
 pipe0 = os.pipe()
@@ -22,7 +24,7 @@ else:
         os.dup2(pipe0[0], 0)
         os.close(pipe2[0])
         os.dup2(pipe2[1], 1)
-        os.execlp("/usr/bin/bc", "bc")
+        os.execve('/usr/bin/bc', ['/usr/bin/bc'], os.environ)
     else:
         os.close(pipe1[1])
         os.close(pipe0[0])
