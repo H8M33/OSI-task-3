@@ -9,4 +9,7 @@ for _ in range(N):
     Y = random.randint(1, 9)
     
     print(f"{X} {O} {Y}")
+    sys.stdout.flush()
     time.sleep(1)
+
+os._exit(0)
