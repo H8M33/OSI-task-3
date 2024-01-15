@@ -14,7 +14,7 @@ pid1 = os.fork()
 if pid1 == 0:
     os.close(pipe1[0])
     os.dup2(pipe1[1], 1)
-    os.execlp("python", "python", "producer.py")
+    os.execve('./producer.py', ['./producer.py'], os.environ)
 else:
     pid2 = os.fork()
     if pid2 == 0:
